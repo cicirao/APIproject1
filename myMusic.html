@@ -97,6 +97,7 @@
     <footer>© 2013 by Xi Rao.</footer>
   </body>
   <script type="text/javascript">
+//************* how many songs.
 document.getElementById("num").innerHTML = myMusic.length;
 
 var musicStyle, isLike;
@@ -165,132 +166,56 @@ function findFav(){
   }
 }
 document.getElementById("folk").innerHTML = findFav().toUpperCase();
-//************* find the day and add to it
-var newSong = document.createElement("li");
 
-var idMon = document.getElementById("mon").getElementsByTagName("ul")[0];
-var idTue = document.getElementById("tue").getElementsByTagName("ul")[0];
-var idWed = document.getElementById("wed").getElementsByTagName("ul")[0];
-var idThu = document.getElementById("thu").getElementsByTagName("ul")[0];
-var idFri = document.getElementById("fri").getElementsByTagName("ul")[0];
-var idSat = document.getElementById("sat").getElementsByTagName("ul")[0];
-var idSun = document.getElementById("sun").getElementsByTagName("ul")[0];
-
+//************* find the day and add to it, I'm trying to use high-order function to replace it.
+var idMon = document.querySelector("#mon>ul");
+var idTue = document.querySelector("#tue>ul");
+var idWed = document.querySelector("#wed>ul");
+var idThu = document.querySelector("#thu>ul");
+var idFri = document.querySelector("#fri>ul");
+var idSat = document.querySelector("#sat>ul");
+var idSun = document.querySelector("#sun>ul");
+var i;
 
 function filllist() {
-  for ( var i=0; i < myMusic.length; i++) {
+  for ( i=0; i < myMusic.length; i++) {
     var day = myMusic[i].date.getDay();
+    var addLi = document.createElement("li");
     switch (day) {
       case 0:
-        idMon.appendChild(document.createElement("li"));             
+        idMon.appendChild(addLi);             
         fillli(idMon.lastChild);
-        idMon.lastChild.querySelector(".coverpage").style.backgroundImage = myMusic[i].coverUrl;
-        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idMon.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idMon.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idMon.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;
       case 1:
-        idTue.appendChild(document.createElement("li"));              
+        idTue.appendChild(addLi);              
         fillli(idTue.lastChild);
-        idTue.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idTue.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idTue.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idTue.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;
       case 2:
-        idWed.appendChild(document.createElement("li"));              
+        idWed.appendChild(addLi);              
         fillli(idWed.lastChild);
-        idWed.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idWed.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idWed.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idWed.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;  
       case 3:
-        idThu.appendChild(document.createElement("li"));              
+        idThu.appendChild(addLi);              
         fillli(idThu.lastChild);
-        idThu.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idThu.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idThu.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idThu.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;
       case 4:
-        idFri.appendChild(document.createElement("li"));              
+        idFri.appendChild(addLi);              
         fillli(idFri.lastChild);
-        idFri.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idFri.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idFri.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idFri.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;
       case 5:
-        idSat.appendChild(document.createElement("li"));              
+        idSat.appendChild(addLi);              
         fillli(idSat.lastChild);
-        idSat.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idSat.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-        if (myMusic[i].isLike == true) {
-          idSat.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idSat.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
         break;
       case 6:
-        idSun.appendChild(document.createElement("li"));              
+        idSun.appendChild(addLi);              
         fillli(idSun.lastChild);
-        idSun.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-        idSun.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/"); 
-        if (myMusic[i].isLike == true) {
-          idSun.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-        } else 
-        {
-          idSun.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-        }
     }
   }   
 } 
 filllist();
-//***** firstly, write a function to fill every li node
+//***** firstly, write a function to fill every li node, I'm trying to use creation helper function to replace it.
 function fillli(linode) {
+  
   linode.appendChild(document.createElement("div")).setAttribute("class", "songinfo");
   linode.querySelector(".songinfo").appendChild(document.createElement("div")).setAttribute("class", "coverpage");
   linode.querySelector(".songinfo").appendChild(document.createElement("h3"));
@@ -298,19 +223,35 @@ function fillli(linode) {
   linode.querySelector(".songinfo").appendChild(document.createElement("h4"));
   linode.appendChild(document.createElement("div")).setAttribute("class", "heart");
   linode.appendChild(document.createElement("div")).setAttribute("class", "musicstyle");
-}
-/*function fillContent(linode){
-  linode.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
-  linode.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
-  linode.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
-  linode.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
-  linode.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/"); 
+
+  linode.querySelector("div.coverpage").style.backgroundImage = myMusic[i].coverUrl;
+  linode.querySelector("div.songinfo>h3").innerHTML = myMusic[i].songName;
+  linode.querySelector("div.songinfo>h5").innerHTML = myMusic[i].year;
+  linode.querySelector("div.songinfo>h4").innerHTML = myMusic[i].singer.join(",");
+  linode.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
   if (myMusic[i].isLike == true) {
     linode.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
   } else 
   {
     linode.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
   }
-}*/
+}
+/*
+function dom(name, attributes , children...) {
+  var node = document.createElement(name);
+  if (attributes) {
+    forEachIn(attributes, function(name, value) {
+      node.setAttribute(name, value);
+    });
+  }
+  for (var i = 2; i < arguments.length; i++) {
+    var child = arguments[i];
+    if (typeof child == "string") 
+      child = document.createTextNode(child);
+    node.appendChild(child);
+  }
+  return node;
+}
+*/
     </script>
 </html>
