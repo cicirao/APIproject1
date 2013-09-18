@@ -16,4 +16,4 @@ My favourite Music Style
     reused code. But for the other part, if I replace them with a function, that couldn't work. So I'm 
     still trying to modify the code.
     
-    So, although it looks like I've achieve my goal. It still need some improvement.  
+    So, although it looks like I've achieve my goal, it still need some improvement.  
