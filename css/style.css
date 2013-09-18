@@ -17,15 +17,15 @@ header{
     display: block;
     margin-left: 15%;
     margin-top: 10em;
+    text-align: center;
 }
 h1{
 	font-size: 3em;
     color: #777777;
     font-weight: lighter;
-    padding-left: 1em;
 }
 #restyle{
-	padding-left: 3.5em;
+	padding-left: 2em;
 }
 em{
 	color: #4876a9;
@@ -108,7 +108,7 @@ li div{
 	background: url("../imgs/young.jpg"), no-repeat;
 	border: 1px solid #cccccc;
 }
-.songname{
+h3{
 	line-height: 4em;
 	position: relative;
 	top: 0.1em;
@@ -118,14 +118,14 @@ li div{
 	font-weight: lighter;
 	font-size: 1.3em;
 }
-.songyear{
+h5{
 	color: #999999;
 	font-weight: lighter;
 	width: 50%;
 	line-height: 2em;
 	margin-left: 12.3em;
 }
-.singer{
+h4{
 	color: #999999;
 	font-weight: lighter;
 	font-size: 0.9em;

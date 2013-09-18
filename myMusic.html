@@ -7,7 +7,14 @@
     <title>My Favourite Music Style</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" type="imgs.ico" href="imgs/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="">
+    <script type="text/javascript" src="scripts/myMusic.js"></script>
+    <script type="text/javascript">
+      function test() {
+        eval(myMusic);
+      }
+      test();
+      try{eval(myMusic);}catch(e){}
+    </script>
   </head>
   <body>
     <header>
@@ -16,9 +23,9 @@
     <div id="wrapper">
       <section id="result">
         <hgroup>
-          <h1>Last week, I have listened to <em>32</em> songs.</h1>
+          <h1>Last week, I have listened to <em id="num">32</em> songs.</h1>
             <br>
-          <h1 id="restyle">My favourite music style is <em>FOLK</em>.</h1>
+          <h1 id="restyle">My favourite music style is <em id="folk">FOLK</em>.</h1>
         </hgroup>
       </section>
       <section id="infolist">
@@ -29,26 +36,6 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
         <div id="tue">
@@ -58,35 +45,15 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
-        <div id="wen">
+        <div id="wed">
           <div class="subtitle">
             <h2 class="day">Wednesday</h2>
             <h2 class="like">Like</h2>
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
         <div id="thu">
@@ -96,16 +63,6 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
         <div id="fri">
@@ -115,16 +72,6 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
         <div id="sat">
@@ -134,16 +81,6 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
         <div id="sun">
@@ -153,20 +90,227 @@
             <h2 class="style">Style</h2>
           </div>
           <ul>
-            <li>
-              <div class="songinfo">
-                <div class="coverpage"></div>
-                <h3 class="songname">Young For You</h3>
-                <h5 class="songyear">2004</h5>
-                <h4 class="singer">Carly Rae Jepsen, Owl City</h4>
-              </div>
-              <div class="heart"></div>
-              <div class="musicstyle">Rock/Electronic</div>
-            </li>
           </ul>
         </div>
       </section>
     </div>
     <footer>© 2013 by Xi Rao.</footer>
   </body>
+  <script type="text/javascript">
+document.getElementById("num").innerHTML = myMusic.length;
+
+var musicStyle, isLike;
+var styleBlues=0, styleFolk=0, stylePop=0, styleJazz=0, styleRB=0, styleRock=0, styleElectronic=0;
+
+//************* count the number of styles
+function countNum() { 
+  for (var i=0; i < myMusic.length; i++) {
+    isLike = myMusic[i].isLike;
+    if (isLike == true) { 
+      for (var j= 0;  j < myMusic[i].musicStyle.length; j++) {
+        musicStyle = myMusic[i].musicStyle[j];
+        switch (musicStyle) {
+          case "Blues":
+            styleBlues++;
+            break;
+          case "Folk":
+            styleFolk++;
+            break;
+          case "Pop":
+            stylePop++;
+            break;
+          case "Jazz":
+            styleJazz++;
+            break;
+          case "R&B":
+            styleRB++;
+            break;
+          case "Rock":
+            styleRock++;
+            break;
+          case "Electronic":
+            styleElectronic++;        
+        } 
+      }   
+    }else 
+    { continue; } 
+  }
+}
+countNum();
+
+//************* find the fav style
+var favStyle = Math.max(styleBlues, styleFolk, stylePop, styleJazz, styleRB, styleRock, styleElectronic);
+function findFav(){
+  switch (favStyle) {
+    case styleBlues:
+      return "Blues";                  
+      break;
+    case styleFolk:
+      return "Folk";
+      break;
+    case stylePop:
+      return "Pop";
+      break;
+    case styleJazz:
+      return "Jazz";
+      break;
+    case styleRB:
+      return "R&B";
+      break;
+    case styleRock:
+      return "Rock";
+      break;
+    case styleElectronic:
+      return "Electronic";
+  }
+}
+document.getElementById("folk").innerHTML = findFav().toUpperCase();
+//************* find the day and add to it
+var newSong = document.createElement("li");
+
+var idMon = document.getElementById("mon").getElementsByTagName("ul")[0];
+var idTue = document.getElementById("tue").getElementsByTagName("ul")[0];
+var idWed = document.getElementById("wed").getElementsByTagName("ul")[0];
+var idThu = document.getElementById("thu").getElementsByTagName("ul")[0];
+var idFri = document.getElementById("fri").getElementsByTagName("ul")[0];
+var idSat = document.getElementById("sat").getElementsByTagName("ul")[0];
+var idSun = document.getElementById("sun").getElementsByTagName("ul")[0];
+
+
+function filllist() {
+  for ( var i=0; i < myMusic.length; i++) {
+    var day = myMusic[i].date.getDay();
+    switch (day) {
+      case 0:
+        idMon.appendChild(document.createElement("li"));             
+        fillli(idMon.lastChild);
+        idMon.lastChild.querySelector(".coverpage").style.backgroundImage = myMusic[i].coverUrl;
+        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idMon.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idMon.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idMon.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idMon.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;
+      case 1:
+        idTue.appendChild(document.createElement("li"));              
+        fillli(idTue.lastChild);
+        idTue.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idTue.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idTue.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idTue.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idTue.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;
+      case 2:
+        idWed.appendChild(document.createElement("li"));              
+        fillli(idWed.lastChild);
+        idWed.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idWed.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idWed.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idWed.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idWed.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;  
+      case 3:
+        idThu.appendChild(document.createElement("li"));              
+        fillli(idThu.lastChild);
+        idThu.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idThu.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idThu.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idThu.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idThu.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;
+      case 4:
+        idFri.appendChild(document.createElement("li"));              
+        fillli(idFri.lastChild);
+        idFri.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idFri.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idFri.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idFri.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idFri.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;
+      case 5:
+        idSat.appendChild(document.createElement("li"));              
+        fillli(idSat.lastChild);
+        idSat.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idSat.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idSat.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
+        if (myMusic[i].isLike == true) {
+          idSat.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idSat.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+        break;
+      case 6:
+        idSun.appendChild(document.createElement("li"));              
+        fillli(idSun.lastChild);
+        idSun.lastChild.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+        idSun.lastChild.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+        idSun.lastChild.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/"); 
+        if (myMusic[i].isLike == true) {
+          idSun.lastChild.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+        } else 
+        {
+          idSun.lastChild.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+        }
+    }
+  }   
+} 
+filllist();
+//***** firstly, write a function to fill every li node
+function fillli(linode) {
+  linode.appendChild(document.createElement("div")).setAttribute("class", "songinfo");
+  linode.querySelector(".songinfo").appendChild(document.createElement("div")).setAttribute("class", "coverpage");
+  linode.querySelector(".songinfo").appendChild(document.createElement("h3"));
+  linode.querySelector(".songinfo").appendChild(document.createElement("h5"));
+  linode.querySelector(".songinfo").appendChild(document.createElement("h4"));
+  linode.appendChild(document.createElement("div")).setAttribute("class", "heart");
+  linode.appendChild(document.createElement("div")).setAttribute("class", "musicstyle");
+}
+/*function fillContent(linode){
+  linode.querySelector(".coverpage").style.background = myMusic[i].coverUrl;
+  linode.querySelector(".songinfo").getElementsByTagName("h3")[0].innerHTML = myMusic[i].songName;
+  linode.querySelector(".songinfo").getElementsByTagName("h5")[0].innerHTML = myMusic[i].year;
+  linode.querySelector(".songinfo").getElementsByTagName("h4")[0].innerHTML = myMusic[i].singer.join(",");
+  linode.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/"); 
+  if (myMusic[i].isLike == true) {
+    linode.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
+  } else 
+  {
+    linode.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
+  }
+}*/
+    </script>
 </html>
