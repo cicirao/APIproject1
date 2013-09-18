@@ -8,13 +8,10 @@ My favourite Music Style
     
     During the process of presenting data in the browser, I manipulated them by DOM: to get the HTML 
     node, append child node, change the inner HTML or other attributes. Also, I've tried to use 
-    "querySelector" to get the node. I know the code could be easier by using "querySelector", but 
-    I failed.
+    "querySelector" to get the node, and I succeed at last.
     
     I also use some method: Math.max(), when finding the favourite style.
-    When adding songs to the list, I use high-order function. It's fun and can make my function concise. 
-    But I just succeed half. I'm trying to figure out why. I just write a fucntion contains a part of
-    the reused code. But for the other part, if I replace them with a function, that couldn't work. So 
-    I'm still trying to modify the code.
+    When adding songs to the list, I've tried to use high-order function. It's fun and can make my 
+    function concise. But I failed. I'm trying to figure out why and modify the code.
     
     So, although it looks like I've achieve my goal, it still need some improvement.  
