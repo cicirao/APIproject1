@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" type="imgs.ico" href="imgs/favicon.ico">
     <script type="text/javascript" src="scripts/myMusic.js"></script>
+    <script type="text/javascript" src="scripts/libs/jquery.js"></script>
     <script type="text/javascript">
       function test() {
         eval(myMusic);
@@ -29,7 +30,7 @@
         </hgroup>
       </section>
       <section id="infolist">
-        <div id="mon">
+        <div id="mon" class="day-item">
           <div class="subtitle">
             <h2 class="day">Monday</h2>
             <h2 class="like">Like</h2>
@@ -38,7 +39,7 @@
           <ul>
           </ul>
         </div>
-        <div id="tue">
+        <div id="tue" class="day-item">
           <div class="subtitle">
             <h2 class="day">Tuesday</h2>
             <h2 class="like">Like</h2>
@@ -47,7 +48,7 @@
           <ul>
           </ul>
         </div>
-        <div id="wed">
+        <div id="wed"class="day-item">
           <div class="subtitle">
             <h2 class="day">Wednesday</h2>
             <h2 class="like">Like</h2>
@@ -56,7 +57,7 @@
           <ul>
           </ul>
         </div>
-        <div id="thu">
+        <div id="thu" class="day-item">
           <div class="subtitle">
             <h2 class="day">Thursday</h2>
             <h2 class="like">Like</h2>
@@ -65,7 +66,7 @@
           <ul>
           </ul>
         </div>
-        <div id="fri">
+        <div id="fri" class="day-item">
           <div class="subtitle">
             <h2 class="day">Friday</h2>
             <h2 class="like">Like</h2>
@@ -74,7 +75,7 @@
           <ul>
           </ul>
         </div>
-        <div id="sat">
+        <div id="sat" class="day-item">
           <div class="subtitle">
             <h2 class="day">Saturday</h2>
             <h2 class="like">Like</h2>
@@ -83,7 +84,7 @@
           <ul>
           </ul>
         </div>
-        <div id="sun">
+        <div id="sun" class="day-item">
           <div class="subtitle">
             <h2 class="day">Sunday</h2>
             <h2 class="like">Like</h2>
@@ -96,162 +97,5 @@
     </div>
     <footer>© 2013 by Xi Rao.</footer>
   </body>
-  <script type="text/javascript">
-//************* how many songs.
-document.getElementById("num").innerHTML = myMusic.length;
-
-var musicStyle, isLike;
-var styleBlues=0, styleFolk=0, stylePop=0, styleJazz=0, styleRB=0, styleRock=0, styleElectronic=0;
-
-//************* count the number of styles
-function countNum() { 
-  for (var i=0; i < myMusic.length; i++) {
-    isLike = myMusic[i].isLike;
-    if (isLike == true) { 
-      for (var j= 0;  j < myMusic[i].musicStyle.length; j++) {
-        musicStyle = myMusic[i].musicStyle[j];
-        switch (musicStyle) {
-          case "Blues":
-            styleBlues++;
-            break;
-          case "Folk":
-            styleFolk++;
-            break;
-          case "Pop":
-            stylePop++;
-            break;
-          case "Jazz":
-            styleJazz++;
-            break;
-          case "R&B":
-            styleRB++;
-            break;
-          case "Rock":
-            styleRock++;
-            break;
-          case "Electronic":
-            styleElectronic++;        
-        } 
-      }   
-    }else 
-    { continue; } 
-  }
-}
-countNum();
-
-//************* find the fav style
-var favStyle = Math.max(styleBlues, styleFolk, stylePop, styleJazz, styleRB, styleRock, styleElectronic);
-function findFav(){
-  switch (favStyle) {
-    case styleBlues:
-      return "Blues";                  
-      break;
-    case styleFolk:
-      return "Folk";
-      break;
-    case stylePop:
-      return "Pop";
-      break;
-    case styleJazz:
-      return "Jazz";
-      break;
-    case styleRB:
-      return "R&B";
-      break;
-    case styleRock:
-      return "Rock";
-      break;
-    case styleElectronic:
-      return "Electronic";
-  }
-}
-document.getElementById("folk").innerHTML = findFav().toUpperCase();
-
-//************* find the day and add to it, I'm trying to use high-order function to replace it.
-var idMon = document.querySelector("#mon>ul");
-var idTue = document.querySelector("#tue>ul");
-var idWed = document.querySelector("#wed>ul");
-var idThu = document.querySelector("#thu>ul");
-var idFri = document.querySelector("#fri>ul");
-var idSat = document.querySelector("#sat>ul");
-var idSun = document.querySelector("#sun>ul");
-var i;
-
-function filllist() {
-  for ( i=0; i < myMusic.length; i++) {
-    var day = myMusic[i].date.getDay();
-    var addLi = document.createElement("li");
-    switch (day) {
-      case 0:
-        idMon.appendChild(addLi);             
-        fillli(idMon.lastChild);
-        break;
-      case 1:
-        idTue.appendChild(addLi);              
-        fillli(idTue.lastChild);
-        break;
-      case 2:
-        idWed.appendChild(addLi);              
-        fillli(idWed.lastChild);
-        break;  
-      case 3:
-        idThu.appendChild(addLi);              
-        fillli(idThu.lastChild);
-        break;
-      case 4:
-        idFri.appendChild(addLi);              
-        fillli(idFri.lastChild);
-        break;
-      case 5:
-        idSat.appendChild(addLi);              
-        fillli(idSat.lastChild);
-        break;
-      case 6:
-        idSun.appendChild(addLi);              
-        fillli(idSun.lastChild);
-    }
-  }   
-} 
-filllist();
-//***** firstly, write a function to fill every li node, I'm trying to use creation helper function to replace it.
-function fillli(linode) {
-  
-  linode.appendChild(document.createElement("div")).setAttribute("class", "songinfo");
-  linode.querySelector(".songinfo").appendChild(document.createElement("div")).setAttribute("class", "coverpage");
-  linode.querySelector(".songinfo").appendChild(document.createElement("h3"));
-  linode.querySelector(".songinfo").appendChild(document.createElement("h5"));
-  linode.querySelector(".songinfo").appendChild(document.createElement("h4"));
-  linode.appendChild(document.createElement("div")).setAttribute("class", "heart");
-  linode.appendChild(document.createElement("div")).setAttribute("class", "musicstyle");
-
-  linode.querySelector("div.coverpage").style.backgroundImage = myMusic[i].coverUrl;
-  linode.querySelector("div.songinfo>h3").innerHTML = myMusic[i].songName;
-  linode.querySelector("div.songinfo>h5").innerHTML = myMusic[i].year;
-  linode.querySelector("div.songinfo>h4").innerHTML = myMusic[i].singer.join(",");
-  linode.querySelector(".musicstyle").innerHTML = myMusic[i].musicStyle.join("/");
-  if (myMusic[i].isLike == true) {
-    linode.querySelector(".heart").style.background = "url(imgs/like.png) no-repeat";
-  } else 
-  {
-    linode.querySelector(".heart").style.background = "url(imgs/unlike.png) no-repeat";
-  }
-}
-/*
-function dom(name, attributes , children...) {
-  var node = document.createElement(name);
-  if (attributes) {
-    forEachIn(attributes, function(name, value) {
-      node.setAttribute(name, value);
-    });
-  }
-  for (var i = 2; i < arguments.length; i++) {
-    var child = arguments[i];
-    if (typeof child == "string") 
-      child = document.createTextNode(child);
-    node.appendChild(child);
-  }
-  return node;
-}
-*/
-    </script>
+  <script type="text/javascript" src="scripts/main.js"></script>
 </html>
