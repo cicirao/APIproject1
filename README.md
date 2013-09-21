@@ -7,11 +7,16 @@ My favourite Music Style
     All the showed data come from JSON, or worked JSON data.
     
     During the process of presenting data in the browser, I manipulated them by DOM: to get the HTML 
-    node, append child node, change the inner HTML or other attributes. Also, I've tried to use 
-    "querySelector" to get the node, and I succeed at last.
+    node, append child node, change the inner HTML or other attributes. 
     
-    I also use some method: Math.max(), when finding the favourite style.
-    When adding songs to the list, I've tried to use high-order function. It's fun and can make my 
-    function concise. But I failed. I'm trying to figure out why and modify the code.
+    At first, I didn't use jquery or high-order function. Just try to finish it with DOM and javascript.
+    However, after seen others' work, I decided to use jquery and high-order function.
     
-    So, although it looks like I've achieve my goal, it still need some improvement.  
+    I packaged scripts in HTML to a js file. And choose jquery to do the query work.
+    What's more, I replaced switch with $.each(obj, function(key, value)), to finish the process of 
+    traverse.
+    
+    Having know the sort() method in class, I change the original way of getting the favourite style. I
+    put the style and frequency together in an object. Then sort the frequency(value) to get the name 
+    of style(key).
+     
